@@ -1,0 +1,80 @@
+<html>
+<head>
+    <link rel="stylesheet"  href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
+    <script>
+        $(document).ready(function() {
+            var socket = io.connect();
+            var name = prompt('Enter Name to Chat!');
+            socket.on('got_new_user', function(user) {
+                console.log('got new user is running', user);
+                const existingUsers = $('#existingUsers')
+                const element = `<tr class="active"><td id="${user.id}">Got new user! ${user.name}</td></tr>`
+                existingUsers.append(element);
+            })  
+            socket.emit('new_user', name);
+            socket.on('existing_users', function(users) {
+                console.log('this is existing users running', users);
+                const loggedUsers = $('#loggedUsers')
+                for (var key in users) {
+                    const user = users[key]
+                    const element = `<tr class="active"><td id="${user.id}">Logged in User! ${user.name}</td></tr>`
+                    loggedUsers.append(element);
+
+                }
+            })
+            socket.on('loggedMessages', function(messages) {
+                console.log('this is logged messages running', messages);
+                const loggedMessages = $('#loggedMessages') 
+                for (i =0; i< messages.length; i++){
+                    const msg = messages[i];
+                    console.log(messages[i]);
+                    const element = `<tr class="danger"><td>${msg.time}</td><td>${msg.user.name}: ${msg.message}</td></tr>`
+                    loggedMessages.append(element);
+                }
+                console.log(messages)
+
+                    
+                        
+
+                  
+            })
+            socket.on('updateMessage', function(message) {
+                const existingMessages = $('#existingMessages')
+                const element = `<tr class="danger"><td>${message.time}</td><td>${message.user.name}: ${message.message}</td></tr>`
+                existingMessages.append(element);
+            })
+            socket.on('user_disconnected', function(user) {
+                console.log('disconnected user', user)
+                const element = $(`#${user.id}`)
+                console.log(element);
+                element.remove();
+            })
+            $('#submit').click(function() {
+                const message = $('#message').val();
+                $('#message').val('');
+                socket.emit('messageReceived', message); 
+            })
+        })
+    </script>
+</head>
+<body>
+    <h1>Group Chat</h1>
+    <input type="text" id="message">
+    <button class="btn btn-primary" id="submit">Submit!</button>
+    <table class="table">
+        <thead>
+            <tr id="loggedUsers"></tr>
+            <tr id="existingUsers"></tr>
+            <tr id="disconnectedUsers"></tr>
+        </thead>
+        <tbody>
+            <tr id="loggedMessages"></tr>
+            <tr id="existingMessages"></tr>
+        </tbody>
+    </table>
+    <!-- <div id="existingMessages"></div>
+    <div id="existingUsers"></div> -->
+</body>
+</html>

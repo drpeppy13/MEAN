@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>js oop2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head> 
+<body>
+    <script>
+        function Ninja(name) {
+            this.name = name;
+            this.health = 100;
+            speed = 3;
+            strength = 3;
+
+            this.showStats = function() {
+                console.log("Name: " + name + ", Health: " + this.health +", Speed: " + speed + ", Strength: " +strength);
+                return this;
+            }
+            Ninja.prototype.sayName = function() {
+                console.log("My ninja name is "+this.name);
+            }
+            Ninja.prototype.drinkSake = function() {
+                this.health += 10;
+            }
+            Ninja.prototype.punch = function(data) {
+                if (data instanceof Ninja) {
+                    data.health -= 5; 
+                    console.log(data.name + " was punched by " + this.name + " and lost 5 health!")
+                }
+                else
+                    console.log("Ninjas can only punch Ninjas")
+            }
+            Ninja.prototype.kick = function(data) {
+                if (data instanceof Ninja) {
+                    data["health"] -= 15; 
+                    console.log(data["name"] + " was kicked by " + this.name + " and lost 15 health!")
+                }
+                else 
+                    console.log("Ninjas can only kick Ninjas")
+            }
+        }
+        var ninja1 = new Ninja("Kyle");
+        var ninja2 = new Ninja("Naruto");
+        ninja1.sayName();
+        ninja1.showStats();
+        ninja1.drinkSake();
+        ninja1.showStats();
+        ninja1.punch(ninja2);
+        ninja1.kick(ninja2);
+        ninja1.punch(Ninja);
+        ninja2.kick(ninja1);
+        ninja2.kick(Ninja); //<---- class Ninja validator
+        ninja1.showStats();
+        ninja2.showStats();
+        // console.log(ninja1);
+        // console.log(ninja2);
+    </script>
+</body>
+</html>

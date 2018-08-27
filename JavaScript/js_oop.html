@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>js oop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head> 
+<body>
+    <script>
+        // <<< give it random stat
+        // function getRandomInt(min, max){
+        //     min = Math.ceil(min);
+        //     max = Math.floor(max);
+        //     return Math.floor(Math.random() * (max-min)+min);
+         
+        // }
+        function Ninja(name) {
+            this.name = name;
+            this.health = 100;
+            speed = 3;
+            strength = 3;
+
+            this.showStats = function() {
+                console.log("Name: " + this.name + ", Health: " + this.health +", Speed: " + speed + ", Strength: " +strength);
+                return this;
+            }
+        }
+        Ninja.prototype.sayName = function() {
+            console.log("My ninja name is "+this.name);
+        }
+        Ninja.prototype.drinkSake = function() {
+            this.health += 10;
+        }
+        var ninja1 = new Ninja("Kyle");
+        var ninja2 = new Ninja("Naruto");
+        ninja1.sayName();
+        ninja1.showStats();
+        ninja1.drinkSake();
+        ninja1.showStats();
+        // console.log(ninja1);
+        // console.log(ninja2);
+    </script>
+</body>
+</html>

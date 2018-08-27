@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Deck of Cards</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <script>
+        function getRandomInt(min, max){
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max-min)+min);
+        }
+        
+            function Card(suit, value, str_value) {
+                this.suit = suit;
+                this.value = value;
+                this.str_value = str_value;
+                
+                this.showMethod = function() {
+                    console.log("Suit: " + this.suit + ", String Value: " + this.str_value + ", Numerical Value: " +this.value);
+                    return this;
+                }
+
+            }
+        
+            function Deck() {
+                this.deck = [];
+                var suits = ["Clubs", "Diamonds", "Hearts", "Spades"];
+                var values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+                var str_values = ["Ace", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"]
+                for (const suit of suits) {
+                    for (const value of values ) {
+                        const card = new Card(suit, value);
+                        this.deck.push(card);
+                    }
+                }
+            }
+            Deck.prototype.shuffle = function() {
+                for (let i = 0; i <this.deck.length; i++) {
+                    const rand = getRandomInt(i,this.deck.length);
+                    const temp = this.deck[i];
+                    this.deck[i] = this.deck[rand];
+                    this.deck[rand] = temp;
+                }
+                return this;
+            }
+            Deck.prototype.reset = function() {
+                let deck = [];
+                let suits = ["Clubs", "Diamonds", "Hearts", "Spades"];
+                let values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+                for (let i = 0; i<suits.length; i++) { 
+                    for (let j = 0; j<13; j++){
+                        deck.push(new Card(suits[i], values[j]));
+                    }
+                }
+                this.deck = deck;
+            }
+            Deck.prototype.deal = function() {
+                let temp = getRandomInt(0, this.deck.length);
+                let card = this.deck[temp];
+                let index = this.deck.indexOf(temp);
+                console.log(card);
+                player.hand.push(card);
+                this.deck.splice(temp, 1); // *** it works!
+
+                
+                return this;
+            }
+            Deck.prototype.push = function(card) {
+                this.deck.unshift(card);
+            }
+            function Player(name) {
+                this.name = name;
+                this.hand = [];
+            }
+            
+            Player.prototype.draw = function(deck) {
+                deck.deal();
+                
+                return this;
+            }
+            Player.prototype.discard = function(index) {
+                let temp = getRandomInt(0, this.hand.length);
+                var index = this.hand[temp] 
+                deck.shuffle();
+                deck.push(index);
+                this.hand.splice(index, 1);
+                return this;
+            }
+            var deck = new Deck();
+            // deck.shuffle().shuffle();
+
+            // deck.shuffle().shuffle();
+            // // shuffle twice
+            // deck.reset();
+            // deck.deal().deal(); 
+            // // deal 2 cards
+            // // deck.deal();
+            // console.log(deck);
+            var player = new Player("Kyle");
+            player.draw(deck);
+            player.draw(deck);
+            player.draw(deck);
+            player.draw(deck);
+            player.draw(deck);
+            console.log(player);
+            console.log(deck);
+            player.discard(1);
+            console.log(player);
+            console.log(deck);
+    </script>
+</body>
+</html>
