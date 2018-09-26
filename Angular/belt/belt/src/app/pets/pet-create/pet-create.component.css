@@ -1,0 +1,27 @@
+
+div{
+
+  margin-left: 10%;
+
+
+}
+input{
+  border-radius:5px;
+}
+
+label{
+  color: gray;
+}
+button{
+  float: right;
+  border-radius: 5px;
+  color:white;
+  background-color: rgb(93, 169, 240);
+}
+.submit{
+  margin-left: 5%;
+}
+
+p{
+  color: red;
+}

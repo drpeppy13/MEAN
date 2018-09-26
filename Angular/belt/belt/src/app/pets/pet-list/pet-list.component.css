@@ -1,0 +1,31 @@
+.details{
+  background-image: linear-gradient( to top, rgba(70, 131, 180, 0.705), white);
+}
+
+.edit{
+  background-image: linear-gradient( to bottom, rgb(196, 177, 126), rgba(70, 131, 180, 0.705));
+  margin-left: 10px;
+}
+
+a{
+  color: blue;
+
+}
+.a{
+  color: white;
+}
+button{
+  border-radius: 5px;
+}
+.label{
+  color: white;
+  background-color: lightgray;
+}
+
+.altrow{
+  background-color: lightgray;
+}
+border{
+  border-color: black;
+  color: black;
+}

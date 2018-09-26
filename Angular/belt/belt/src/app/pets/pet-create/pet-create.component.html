@@ -1,0 +1,31 @@
+<mat-card>
+  <h2>The Pet Shelter</h2>
+  <a class="home" routerLink='/pets'>home</a>
+  <h3>Know of a pet needing a home?</h3>
+  <form (submit) ="onSavePet(petForm)" #petForm="ngForm">
+    <mat-form-field>
+        <label>Pet name:</label>
+        <input  type="text" name="name" [ngModel]="pet?.name" minlength="3" #name="ngModel" required>
+        <p *ngIf="name.invalid">Pet name has to be at least 3 letters</p>
+        <br>
+        <label>Pet type:</label>
+        <input  type="text" name="type" [ngModel]="pet?.type" minlength="3" #type="ngModel" required>
+        <p *ngIf="type.invalid">Pet type has to be at least 3 letters</p>
+        <br>
+        <label>Description:</label>
+        <input  type="text" name="description" [ngModel]="pet?.description" minlength="3" #description="ngModel" required>
+        <p *ngIf="description.invalid">Pet name has to be at least 3 letters</p>
+        <br>
+      <label>Skills:</label>
+      <div id="skill" class="skill">
+        <label>Skill 1: </label>  <input  type="text" target="skill" name="skill1" [ngModel]="pet?.skill1" #skill1="ngModel" required="false">
+        <br>
+        <label>Skill 2: </label> <input  type="text" target="skill" name="skill2" [ngModel]="pet?.skill2" #skill2="ngModel" required="false">
+        <br>
+        <label>Skill 3: </label>  <input  type="text" target="skill" name="skill3" [ngModel]="pet?.skill3" #skill3="ngModel" required="false">
+        <br>
+      </div>
+      <button><a [routerLink]="['/pets']">Cancel</a></button><button class="submit" type="submit">Add Pet</button>
+    </mat-form-field>
+  </form>
+</mat-card>

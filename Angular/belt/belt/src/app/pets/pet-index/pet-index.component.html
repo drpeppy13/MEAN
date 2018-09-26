@@ -1,0 +1,15 @@
+<mat-card>
+  <h2>The Pet Shelter</h2>
+  <a routerLink='/pets'>Home</a>
+  <h3>Details about {{ pet.name }} </h3>
+  <div>
+    <p class="label">Pet type: </p>  <p class="entry">{{pet.type}}</p><br>
+    <p class="label">Description:</p>  <p class="entry">{{pet.description}}</p><br>
+    <p class="label">Skills: </p><br>
+    <p class="entry">{{pet.skill1}}</p><br>
+    <p class="entry">{{pet.skill2}}</p><br>
+    <p class="entry">{{pet.skill3}}</p>
+
+  <button id="like" (click)="onLike(pet.id)">Like this pet</button><button id="adopt" (click)="onDelete(pet.id)">Adopt this Pet!</button>
+  </div>
+</mat-card>
