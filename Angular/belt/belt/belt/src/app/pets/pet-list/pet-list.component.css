@@ -13,6 +13,16 @@ a{
 }
 .a{
   color: white;
+  background-image: linear-gradient( to top, rgba(70, 131, 180, 0.705), white);
+  border-radius: 5px;
+  height: 35px;
+}
+.b{
+  background-image: linear-gradient( to bottom, rgb(196, 177, 126), rgba(70, 131, 180, 0.705));
+  margin-left: 10px;
+  border-radius: 5px;
+  height: 35px;
+  color: white;
 }
 button{
   border-radius: 5px;

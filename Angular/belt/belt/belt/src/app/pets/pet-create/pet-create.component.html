@@ -3,7 +3,6 @@
   <a class="home" routerLink='/pets'>home</a>
   <h3>Know of a pet needing a home?</h3>
   <form (submit) ="onSavePet(petForm)" #petForm="ngForm">
-    <mat-form-field>
         <label>Pet name:</label>
         <input  type="text" name="name" [ngModel]="pet?.name" minlength="3" #name="ngModel" required>
         <p *ngIf="name.invalid">Pet name has to be at least 3 letters</p>
@@ -26,6 +25,5 @@
         <br>
       </div>
       <button><a [routerLink]="['/pets']">Cancel</a></button><button class="submit" type="submit">Add Pet</button>
-    </mat-form-field>
   </form>
 </mat-card>

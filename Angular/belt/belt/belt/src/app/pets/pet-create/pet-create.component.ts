@@ -34,6 +34,7 @@ export class PetCreateComponent implements OnInit {
   }
   onSavePet(form: NgForm ) {
     if (form.invalid) {
+      console.log(form)
       return;
     }
     if (this.mode === 'create') {

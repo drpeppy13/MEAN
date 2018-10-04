@@ -14,7 +14,7 @@
       <tr class="altrow" *ngFor="let pet of pets" >
         <td>{{pet.name}}</td>
         <td>{{pet.type}}</td>
-        <td><button class="details"><a class="a"[routerLink]="[pet.id]">Details</a></button> <button class="edit"><a class="a" [routerLink]="['/pets/'+ pet.id + '/edit/']">Edit</a></button></td>
+        <td><a class="a"[routerLink]="[pet.id]" mat-icon-button>Details</a><a class="b" [routerLink]="['/pets/'+ pet.id + '/edit/']" mat-icon-button>Edit</a></td>
       </tr>
     </tbody>
   </table>

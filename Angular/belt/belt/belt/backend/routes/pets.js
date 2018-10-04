@@ -11,7 +11,6 @@ router.post('/pets', (req, res, next) => {
     skill1: req.body.skill1,
     skill2: req.body.skill2,
     skill3: req.body.skill3,
-    likes: 0,
   });
   pet.save().then(createdPet => {
     res.status(201).json({
@@ -30,7 +29,6 @@ router.put('/pets/:id/edit', (req, res, next) => {
     skill1: req.body.skill1,
     skill2: req.body.skill2,
     skill3: req.body.skill3,
-    likes: 0,
   })
   Pet.updateOne({_id: req.params.id}, pet).then(result => {
     res.status(200).json({message: 'Update successful!'})
